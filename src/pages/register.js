@@ -6,6 +6,7 @@ import Button from "../components/Button";
 import { auth, createUserDocument, getUserByEmail } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import Message from "../components/Message";
+import FormContainer from "../components/FormContainer";
 import { validateRegisterForm } from "../utils";
 
 const Register = () => {
@@ -71,52 +72,44 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-64px)] flex justify-center items-center p-[20px]">
-      <div className="w-full md:w-[560px] relative bg-white shadow-2 border border-greyLight rounded-lg pt-6 lg:pt-10 pb-16">
-        <p className="text-subtitle font-semibold pb-4 px-6 lg:pb-6 lg:px-12 border-b border-greyLight">
-          Register
-        </p>
-
-        <div className="px-6 pt-4 lg:pt-6 lg:px-12">
-          <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 gap-4 lg:gap-6">
-              <FormInput
-                name="name"
-                value={values.name}
-                onChange={handleChange}
-                label="Name"
-                required
-                errors={errors}
-              />
-              <FormInput
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                label="Email Address"
-                type="email"
-                required
-                errors={errors}
-              />
-              <FormInput
-                name="password"
-                value={values.password}
-                onChange={handleChange}
-                label="Password"
-                type="password"
-                required
-                errors={errors}
-              />
-            </div>
-
-            {firebaseError && <Message status="error" text={firebaseError} />}
-
-            <Button type="submit" loading={loading} disabled={loading}>
-              Register
-            </Button>
-          </form>
+    <FormContainer title="Register">
+      <form onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 gap-4 lg:gap-6">
+          <FormInput
+            name="name"
+            value={values.name}
+            onChange={handleChange}
+            label="Name"
+            required
+            errors={errors}
+          />
+          <FormInput
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+            label="Email Address"
+            type="email"
+            required
+            errors={errors}
+          />
+          <FormInput
+            name="password"
+            value={values.password}
+            onChange={handleChange}
+            label="Password"
+            type="password"
+            required
+            errors={errors}
+          />
         </div>
-      </div>
-    </div>
+
+        {firebaseError && <Message status="error" text={firebaseError} />}
+
+        <Button type="submit" loading={loading} disabled={loading}>
+          Register
+        </Button>
+      </form>
+    </FormContainer>
   );
 };
 
