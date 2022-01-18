@@ -11,6 +11,8 @@ import {
   getDocs,
 } from "firebase/firestore";
 
+// Ideally I would have use environment variables here but right now didn't used
+// it so that the project can easily be setup locally without requiring the env file.
 const firebaseConfig = {
   apiKey: "AIzaSyC_Cd3JknbTqN_HS-0ty-xpxi-RLiuWD-s",
   authDomain: "my-project-1e6db.firebaseapp.com",
