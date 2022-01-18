@@ -17,8 +17,9 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      if (!isUser) return;
-      const user = await getUserById(localStorage.getItem("uid"));
+      const uid = localStorage.getItem("uid");
+      if (!uid) return;
+      const user = await getUserById(uid);
       user && setUser((prev) => ({ ...prev, ...user }));
     })();
   }, []);
