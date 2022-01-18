@@ -65,7 +65,10 @@ export const getUserById = async (uid) => {
 
 export const getUserByEmail = async (email) => {
   try {
-    const q = query(collection(db, "users"), where("email", "==", email));
+    const q = query(
+      collection(db, "users"),
+      where("email", "==", email.toLowerCase())
+    );
 
     const querySnapshot = await getDocs(q);
 

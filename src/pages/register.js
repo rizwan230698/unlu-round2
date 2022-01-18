@@ -26,8 +26,10 @@ const Register = () => {
       const existingUser = await getUserByEmail(email);
 
       if (existingUser) {
-        const credentialsMatch = ["name", "email", "password"].every(
-          (key) => values[key] === existingUser[key]
+        const credentialsMatch = ["name", "email", "password"].every((key) =>
+          key === "email"
+            ? values[key].toLowerCase() === existingUser[key]
+            : values[key] === existingUser[key]
         );
         if (!credentialsMatch) {
           setFirebaseError("Invalid credentials");
